@@ -1,152 +1,144 @@
-# VisualShop-AI: AI-Powered Visual E-Commerce Platform
+#  VisualShop-AI — Full-Stack AI-Powered E-Commerce Platform
 
-> ⚠️ **Disclaimer:** This codebase is a sanitized, anonymized version of a real-world freelance project executed as part of a university capstone initiative. All proprietary identifiers and client branding have been removed. The project is shared here strictly for demonstration of full-stack engineering, AI integration, and architectural design.
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-v16+-green.svg)](https://nodejs.org/)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![React](https://img.shields.io/badge/React-v18+-orange.svg)](https://reactjs.org/)
+> ⚠️ **Disclaimer:** This codebase is a restructured version of a freelance client project originally developed for a university FYP team. All proprietary data and branding have been removed. Shared for demonstration of engineering capabilities, AI integration, and architecture design.
 
 ---
 
 ##  Overview
 
-**VisualShop-AI** is a modular, AI-augmented e-commerce platform built using a microservices architecture. It blends traditional shopping workflows with intelligent computer vision and personalized recommendations, simulating a next-gen shopping experience.
+**VisualShop-AI** is a microservices-based, full-stack e-commerce system that combines AI-powered visual search, intelligent recommendations, conversational support, and smart inventory forecasting — designed to scale across multi-vendor ecosystems.
 
 ---
 
-## 🎯 Key Features
+##  Core Feature Highlights
 
-###  Visual Search (CLIP + FAISS)
+###  User-Facing Capabilities
+- **Visual Search**: Upload an image → retrieve visually similar products via CLIP + FAISS
+- **Smart Recommendations**: Hybrid engine (collaborative + content-based) powered by Gorse & TF-IDF
+- **Shopping Experience**: Cart, wishlist, multi-filter product browsing, product comparisons
+- **Personalization**: Recently viewed, saved preferences, custom offers, and discounts
+- **Order Management**: Place/track orders, manage returns/refunds, view history
+- **AI Chat Assistant**: Product queries, order status, guided navigation (24/7 support)
 
-* Upload an image to retrieve visually similar products using OpenAI's CLIP embeddings + FAISS vector similarity
-* Fully integrated into product listing and search flow
-
-###  Personalized Recommendations
-
-* Behavior-aware product suggestions powered by Gorse
-* Real-time adaptation to user activity
-
-###  Core E-Commerce Engine
-
-* Secure user auth (JWT), cart, wishlist, order flow
-* Product detail pages with ratings & reviews
-* SQL-based order and inventory management
-
-###  Conversational Support
-
-* Context-aware chatbot integration
-* Pre-trained assistant for product-related queries and basic navigation
+###  Seller Dashboard Capabilities
+- **Product Management**: Add/edit/delete products, set pricing, upload images/specs, bulk upload
+- **Inventory Intelligence**:
+  - Realtime stock tracking, reorder alerts, and stock status automation
+  - Priority scoring based on sales, views, and inventory levels
+  - Batch updates and reorder optimization tools
+- **Order Fulfillment**: Manage orders, process returns, update shipping statuses
+- **Customer Insights**: Analyze purchase behavior, conversion rates, segment users
+- **Sales Analytics**: Monitor revenue, trends, top-performing SKUs, and generate custom reports
+- **Configuration & Settings**: Tax, payments, shipping, store preferences, API integrations
 
 ---
 
-##  Tech Stack Breakdown
+##  AI Systems (Backend Intelligence)
 
-###  Frontend
+###  Hybrid Recommendation System
+- **Collaborative Filtering**: Weighted interaction scoring (view=1, cart=2, order=3), time-sensitive (last 30 days)
+- **Content-Based Matching**: TF-IDF on descriptions, features, and categories
+- **Trending Engine**: TTL caching for hot products (based on sales/views)
+- **Fallback Handling**: Cold-start logic for new users or sparse data
+- **Performance**: Scored ranking, real-time recommendations, and cache optimization
 
-* React 18+ w/ functional components & hooks
-* Axios for service-level API communication
-* Bootstrap / Material UI for UI/UX
-* Responsive and accessible design patterns
-
-###  Backend
-
-* Node.js + Express
-* MySQL (RDBMS)
-* JWT-based user authentication
-* RESTful APIs with service-layer architecture
-
-###  AI Services
-
-* Python 3.8+
-* OpenAI CLIP for feature extraction
-* FAISS for fast similarity search
-* Gorse engine for collaborative filtering
+###  Smart Inventory Forecasting
+- Real-time stock intelligence + auto status labeling (In Stock / Low / Out of Stock)
+- Scoring Algorithm:
+  - Stock Level (50 pts if OOS), Views (up to 50), Sales (up to 100), Freshness Bonus
+  - Tiered Priority: Critical (≥100), Moderate (≥30), Low (<30)
+- Smart Tools:
+  - Reorder suggestions, trend analytics, and inventory heatmaps
 
 ---
 
-##  Architecture Overview
+##  Tech Stack
+
+| Layer      | Tech Stack                            |
+|------------|----------------------------------------|
+| Frontend   | React 18+, Axios, Bootstrap / MUI      |
+| Backend    | Node.js + Express, MySQL, JWT          |
+| AI/ML      | Python 3.8+, CLIP, FAISS, Gorse        |
+| Infra      | Microservices architecture             |
+| Others     | REST APIs, Caching, JWT Auth           |
+
+---
+
+##  Directory Structure
 
 ```
-📁 react-frontend             → User interface (React)
-📁 nodejs-backend             → Auth, cart, product API (Node.js + Express)
-📁 visual-search-api          → CLIP + FAISS microservice (Python)
-📁 recommendation-service     → Gorse-based recommendation system
-📁 chatbot-setup              → Chatbot UI and integration logic
-📄 db.sql                     → Complete MySQL schema + seed data
+📁 react-frontend          → Frontend UI (React)
+📁 nodejs-backend          → REST API server (Node.js + MySQL)
+📁 visual-search-api       → Image-to-product matching (CLIP + FAISS)
+📁 recommendation-service  → Gorse-powered recommender system
+📁 chatbot-setup           → AI chatbot and product assistant
+📄 db.sql                  → Full MySQL schema and sample seed data
 ```
 
 ---
 
-##  Quick Setup Guide
+##  Setup Instructions
 
 ### Prerequisites
+- Node.js v16+
+- Python 3.8+
+- MySQL 8.x
 
-* Node.js v16+
-* Python 3.8+
-* MySQL
-
-### Installation Workflow
+### Install & Run
 
 ```bash
-# Clone project
-$ git clone https://github.com/yourusername/VisualShop-AI.git
-$ cd VisualShop-AI
+# Clone the project
+git clone https://github.com/yourusername/VisualShop-AI.git
+cd VisualShop-AI
 
-# Setup Backend
-$ cd nodejs-backend
-$ npm install
-# Copy .env.example → .env and fill in DB and JWT settings
+# Backend
+cd nodejs-backend
+npm install
+# Add .env file
+npm start
 
-# Setup Frontend
-$ cd ../react-frontend
-$ npm install
+# Frontend
+cd ../react-frontend
+npm install
+npm start
 
-# Setup Visual Search API
-$ cd ../visual-search-api
-$ python -m venv venv
-$ source venv/bin/activate  # Windows: .\venv\Scripts\activate
-$ pip install -r requirements.txt
-
-# Start Backend
-$ cd ../nodejs-backend && npm start
-
-# Start Frontend
-$ cd ../react-frontend && npm start
-
-# Start Visual Search
-$ cd ../visual-search-api && python app.py
+# Visual Search API
+cd ../visual-search-api
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python app.py
 ```
 
 ---
 
-##  Testing & QA
+##  QA & Testing
 
-* Frontend: Manual flow testing via browser / Lighthouse
-* Backend: Postman for endpoint validation
-* Visual Search: Upload sample image and verify match accuracy
-* Recommender: Simulate interactions, verify product suggestions
-
----
-
-##  License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+- API: Postman & Swagger testing
+- UI: Manual UX validation + Lighthouse performance checks
+- Recommender: Simulated user events & interaction logging
+- Inventory: Sales simulation to validate stock status updates
+- Chatbot: Contextual product + order queries
 
 ---
 
-##  Author's Note
+## Author's Note
 
-As the lead developer, I was responsible for designing and implementing the end-to-end architecture, from database schema to production-ready microservices. This repo serves as a consolidated portfolio artifact to demonstrate my ability to deliver scalable, full-stack systems with AI integration.
+I led the full system architecture, backend logic, AI integrations, and frontend engineering. This project serves as a comprehensive proof of capability in building scalable, modular, and intelligent commerce systems that merge data science, product thinking, and engineering depth.
 
-> Recruiters and collaborators may request private access to deployment videos or walkthrough documentation by contacting me directly.
+> Recruiters: Private demo, code walkthrough, and video access available on request.
 
 ---
 
-##  Credits
+## Acknowledgments
 
-* OpenAI CLIP – [https://github.com/openai/CLIP](https://github.com/openai/CLIP)
-* FAISS by Facebook AI – [https://github.com/facebookresearch/faiss](https://github.com/facebookresearch/faiss)
-* Gorse Recommendation Engine – [https://github.com/gorse-io/gorse](https://github.com/gorse-io/gorse)
-* Bootstrap / Material UI
-* The original academic team for permitting this refactored showcase
+- [OpenAI CLIP](https://github.com/openai/CLIP)
+- [Facebook FAISS](https://github.com/facebookresearch/faiss)
+- [Gorse Recommendation System](https://github.com/gorse-io/gorse)
+- MUI / Bootstrap
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
