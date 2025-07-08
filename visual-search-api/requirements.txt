@@ -1,0 +1,7 @@
+flask==2.3.2
+flask-cors==3.0.10
+pillow==10.0.0
+torch==2.0.1
+torchvision==0.15.2
+faiss-cpu==1.7.4
+git+https://github.com/openai/CLIP.git
