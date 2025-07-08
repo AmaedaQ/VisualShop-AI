@@ -1,0 +1,62 @@
+version: "3.1"
+
+rules:
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Say 'I am a bot' anytime the user challenges
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+
+  - rule: Fallback rule when the intent is unclear
+    steps:
+      - intent: nlu_fallback
+      - action: utter_default
+
+  - rule: Respond to return policy questions
+    steps:
+      - intent: return_policy
+      - action: utter_return_policy
+
+  - rule: Respond to shipping info questions
+    steps:
+      - intent: shipping_info
+      - action: utter_shipping_info
+
+  - rule: Respond to payment method questions
+    steps:
+      - intent: payment_methods
+      - action: utter_payment_methods
+
+  - rule: Respond to order tracking requests
+    steps:
+      - intent: track_order
+      - action: utter_track_order
+
+  - rule: Track order when ID is provided
+    steps:
+      - intent: track_order_with_id
+      - action: action_track_order
+
+  - rule: Respond to help requests
+    steps:
+      - intent: ask_help
+      - action: utter_help
+
+  - rule: Provide contact information
+    steps:
+      - intent: ask_contact
+      - action: utter_contact
+
+  - rule: Respond to product inquiries
+    steps:
+      - intent: product_inquiry
+      - action: utter_product_info
+
+  - rule: Respond to product search queries
+    steps:
+      - intent: search_products
+      - action: action_fetch_products

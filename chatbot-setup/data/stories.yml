@@ -1,0 +1,298 @@
+version: "3.1"
+
+stories:
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye
+
+  - story: Ask about return policy and confirm understanding
+    steps:
+      - intent: return_policy
+      - action: utter_return_policy
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Ask about shipping info and follow up with tracking
+    steps:
+      - intent: shipping_info
+      - action: utter_shipping_info
+      - intent: track_order
+      - action: utter_track_order
+      - intent: track_order_with_id
+      - action: action_track_order
+
+  - story: Ask about payment methods and express concern
+    steps:
+      - intent: payment_methods
+      - action: utter_payment_methods
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+
+  - story: Customer asks to track order without ID
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: track_order
+      - action: utter_track_order
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer provides order ID directly
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer tracks order then asks about returns
+    steps:
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: return_policy
+      - action: utter_return_policy
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer tracks order and is unhappy with status
+    steps:
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: ask_contact
+      - action: utter_contact
+
+  - story: Customer wants to track order then asks for help
+    steps:
+      - intent: track_order
+      - action: utter_track_order
+      - intent: ask_help
+      - action: utter_help
+      - intent: track_order_with_id
+      - action: action_track_order
+
+  - story: Customer tracks multiple aspects of order
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: shipping_info
+      - action: utter_shipping_info
+      - intent: payment_methods
+      - action: utter_payment_methods
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Customer needs help with order tracking
+    steps:
+      - intent: ask_help
+      - action: utter_help
+      - intent: track_order
+      - action: utter_track_order
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer wants to return an item
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: return_policy
+      - action: utter_return_policy
+      - intent: ask_help
+      - action: utter_help
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Customer inquires about shipping and payments
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: shipping_info
+      - action: utter_shipping_info
+      - intent: payment_methods
+      - action: utter_payment_methods
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer needs contact information
+    steps:
+      - intent: ask_help
+      - action: utter_help
+      - intent: ask_contact
+      - action: utter_contact
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer browses products then tracks order
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: product_inquiry
+      - action: utter_product_info
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Order tracking escalation to customer service
+    steps:
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_contact
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer tracks order and asks about delivery
+    steps:
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: shipping_info
+      - action: utter_shipping_info
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer satisfied with order tracking
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: mood_great
+      - action: utter_happy
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Fallback and help recovery
+    steps:
+      - intent: nlu_fallback
+      - action: utter_default
+      - intent: ask_help
+      - action: utter_help
+
+  - story: Multiple fallbacks then successful order tracking
+    steps:
+      - intent: nlu_fallback
+      - action: utter_default
+      - intent: nlu_fallback
+      - action: utter_default
+      - intent: track_order_with_id
+      - action: action_track_order
+
+  - story: Complete order issue resolution with tracking
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_contact
+      - intent: return_policy
+      - action: utter_return_policy
+      - intent: affirm
+      - action: utter_happy
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Customer service comprehensive support
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: shipping_info
+      - action: utter_shipping_info
+      - intent: payment_methods
+      - action: utter_payment_methods
+      - intent: return_policy
+      - action: utter_return_policy
+      - intent: ask_contact
+      - action: utter_contact
+      - intent: mood_great
+      - action: utter_happy
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Customer tries to track order without providing ID
+    steps:
+      - intent: track_order
+      - action: utter_track_order
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer provides order ID then asks for more info
+    steps:
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: ask_help
+      - action: utter_help
+      - intent: ask_contact
+      - action: utter_contact
+
+  - story: Customer searches for products
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: product_inquiry
+      - action: utter_product_info
+      - intent: search_products
+      - action: action_fetch_products
+      - intent: affirm
+      - action: utter_happy
+
+  - story: Customer searches products then tracks order
+    steps:
+      - intent: search_products
+      - action: action_fetch_products
+      - intent: track_order_with_id
+      - action: action_track_order
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Customer searches products and asks for help
+    steps:
+      - intent: search_products
+      - action: action_fetch_products
+      - intent: ask_help
+      - action: utter_help
+      - intent: search_products
+      - action: action_fetch_products

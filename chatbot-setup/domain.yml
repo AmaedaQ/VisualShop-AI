@@ -1,0 +1,151 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - return_policy
+  - shipping_info
+  - payment_methods
+  - track_order
+  - track_order_with_id
+  - ask_help
+  - ask_contact
+  - product_inquiry
+  - nlu_fallback
+  - search_products
+
+entities:
+  - order_id
+
+responses:
+  utter_greet:
+    - text: "Hey! How are you?"
+    - text: "Hello! How can I help you today?"
+    - text: "Hi there! What can I do for you?"
+
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+    - text: "Don't worry, I'm here to help! Things will get better 😊"
+    - text: "I understand you're feeling down. Let me try to assist you better."
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+    - text: "Was that information helpful?"
+    - text: "Does that answer your question?"
+
+  utter_happy:
+    - text: "Great, carry on!"
+    - text: "Awesome! Glad I could help!"
+    - text: "Perfect! Is there anything else you need?"
+
+  utter_goodbye:
+    - text: "Bye"
+    - text: "Goodbye! Have a great day!"
+    - text: "Take care! Feel free to come back anytime."
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+    - text: "Yes, I'm a chatbot designed to help with your questions!"
+    - text: "I'm an AI assistant here to help you with orders, returns, and more."
+
+  utter_track_order:
+    - text: "🔍 I'd love to help you track your order! Please provide your order ID (it looks like: ORD-1749157242407-CC7F3879)"
+    - text: "📦 To track your order, I'll need your order ID. It should start with 'ORD-' followed by numbers and letters."
+    - text: "🚚 Sure! I can help you track your order. Just share your order ID and I'll get the latest status for you."
+
+  utter_return_policy:
+    - text: "You can return any product within 30 days as long as it's unused and in its original packaging. Let me know if you need more details!"
+    - text: "Our return policy allows returns within 30 days of purchase. Items must be unused and in original packaging. Need help with a return?"
+    - text: "Returns are accepted within 30 days if items are unused and in original packaging. Would you like to start a return process?"
+
+  utter_shipping_info:
+    - text: "Standard shipping takes 5-7 days, and express shipping takes 2-3 days. You can track your order anytime!"
+    - text: "We offer standard delivery (5-7 days) and express delivery (2-3 days). All orders include tracking!"
+    - text: "Shipping options: Standard 5-7 days, Express 2-3 days. Free tracking included with all orders!"
+
+  utter_payment_methods:
+    - text: "We accept credit cards, PayPal, and cash on delivery. Let me know if you need help with payments!"
+    - text: "Payment options include: Credit/Debit cards, PayPal, and Cash on Delivery. All payments are secure!"
+    - text: "You can pay using cards, PayPal, or cash on delivery. Having payment issues? I can help!"
+
+  utter_help:
+    - text: "I'm here to help! I can assist with orders, returns, shipping, payments, and product searches. What do you need help with?"
+    - text: "Sure! I can help you with tracking orders, return policies, shipping info, payment methods, or searching products. What's your question?"
+    - text: "I'd be happy to help! Ask me about orders, returns, shipping, payments, or products. What can I assist you with?"
+
+  utter_contact:
+    - text: "You can reach our customer service at intellicart.notify@gmail.com or call 1-800-SUPPORT (1-800-786-7678). We're here 24/7!"
+    - text: "Contact us: Email intellicart.notify@gmail.com, Phone 1-800-SUPPORT, or use our live chat. We're always ready to help!"
+    - text: "Get in touch: intellicart.notify@gmail.com, 1-800-SUPPORT, or chat with us anytime. Our support team is available 24/7!"
+
+  utter_product_info:
+    - text: "We offer a wide range of products! Try searching for something specific, like 'watch' or 'shoes,' and I’ll find some great options for you."
+    - text: "Our product catalog includes electronics, clothing, home goods, and more! Tell me what you’re looking for, e.g., 'laptop' or 'jacket.'"
+    - text: "We have tons of products! Search for something like 'headphones' or 'dress,' and I’ll show you what’s available."
+
+  utter_default:
+    - text: "I'm sorry, I didn't understand that. I can help with orders, returns, shipping, payments, or product searches. What would you like to know?"
+    - text: "I didn't catch that. Try asking about order tracking, returns, shipping, payments, or search for products like 'watch.' How can I help?"
+    - text: "Could you rephrase that? I specialize in helping with orders, returns, shipping, payments, or product searches. What do you need?"
+
+  utter_ask_order_id:
+    - text: "🆔 Please provide your order ID so I can track it for you. It should look like: ORD-1749157242407-CC7F3879"
+    - text: "📋 I'll need your order ID to look up your order. You can find it in your order confirmation email."
+    - text: "🔍 To track your order, please share your order ID (starts with 'ORD-' followed by numbers and letters)."
+
+  utter_invalid_order_id:
+    - text: "❌ That doesn't look like a valid order ID. Please check the format: ORD-XXXXXXXXX-XXXXXXXX"
+    - text: "🤔 The order ID format seems incorrect. It should start with 'ORD-' followed by numbers and letters."
+    - text: "⚠️ Please double-check your order ID. The correct format is: ORD-1234567890123-ABCD1234"
+
+slots:
+  order_id:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: order_id
+    - type: from_text
+      intent: track_order_with_id
+      
+  user_name:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+
+  last_order_status:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+actions:
+  - utter_greet
+  - utter_cheer_up
+  - utter_did_that_help
+  - utter_happy
+  - utter_goodbye
+  - utter_iamabot
+  - utter_track_order
+  - utter_return_policy
+  - utter_shipping_info
+  - utter_payment_methods
+  - utter_help
+  - utter_contact
+  - utter_product_info
+  - utter_default
+  - utter_ask_order_id
+  - utter_invalid_order_id
+  - action_track_order
+  - action_fetch_products

@@ -1,0 +1,334 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
+      - howdy
+      - hi there
+      - greetings
+      - what's up
+      - hiya
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - see you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+      - catch you later
+      - farewell
+      - take care
+      - talk to you later
+      - until next time
+      - peace out
+      - ciao
+
+  - intent: affirm
+    examples: |
+      - yes
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+      - right
+      - absolutely
+      - sure
+      - definitely
+      - yep
+      - yeah
+      - ok
+      - okay
+      - fine
+      - agreed
+      - exactly
+
+  - intent: deny
+    examples: |
+      - no
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not really
+      - nope
+      - nah
+      - not at all
+      - absolutely not
+      - I disagree
+      - that's wrong
+      - incorrect
+      - not correct
+
+  - intent: mood_great
+    examples: |
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
+      - fantastic
+      - excellent
+      - brilliant
+      - awesome
+      - terrific
+      - marvelous
+
+  - intent: mood_unhappy
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremely sad
+      - so saad
+      - so sad
+      - terrible
+      - awful
+      - depressed
+      - miserable
+      - frustrated
+      - annoyed
+
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?
+      - are you real?
+      - what are you?
+      - who am I talking to?
+      - are you artificial intelligence?
+      - are you AI?
+
+  - intent: return_policy
+    examples: |
+      - What is the return policy?
+      - Can I return my order?
+      - How long do I have to return an item?
+      - Do I need a receipt for returns?
+      - What if my product is damaged?
+      - What happens if I return an opened product?
+      - how do returns work?
+      - return process
+      - can I get my money back?
+      - refund policy
+      - how to return items
+      - return guidelines
+      - exchange policy
+      - can I exchange this?
+      - return conditions
+      - return requirements
+
+  - intent: shipping_info
+    examples: |
+      - How long does shipping take?
+      - What are the delivery options?
+      - Do you offer express shipping?
+      - Can I track my package?
+      - How much does shipping cost?
+      - What courier do you use for shipping?
+      - delivery time
+      - shipping options
+      - shipping rates
+      - delivery charges
+      - shipping methods
+      - fast delivery
+      - overnight shipping
+      - shipping cost
+      - delivery fee
+
+  - intent: payment_methods
+    examples: |
+      - What payment options do you accept?
+      - Can I pay with PayPal?
+      - Do you accept credit cards?
+      - Is cash on delivery available?
+      - Are refunds processed to the original payment method?
+      - Do you support Apple Pay or Google Pay?
+      - payment options
+      - how can I pay?
+      - accepted payment methods
+      - payment ways
+      - can I use my card?
+      - digital wallets
+      - online payment
+      - payment security
+      - payment processing
+
+  - intent: track_order
+    examples: |
+      - where is my order?
+      - track my order
+      - order status
+      - where is my package?
+      - how can I track my order?
+      - check order status
+      - order tracking
+      - find my order
+      - locate my package
+      - order details
+      - shipment status
+      - delivery status
+      - has my order shipped?
+      - order update
+      - package location
+      - tracking number
+      - check my order
+      - order progress
+      - where's my stuff?
+      - I want to track my order
+      - can you track my order?
+      - help me track my order
+      - order tracking please
+      - show me my order status
+      - what's the status of my order?
+      - check my package
+      - is my order shipped?
+      - order info
+      - package info
+
+  - intent: track_order_with_id
+    examples: |
+      - track order [ORD-1749157242407-CC7F3879](order_id)
+      - my order id is [ORD-1749157242407-CC7F3879](order_id)
+      - check status of [ORD-1749157242407-CC7F3879](order_id)
+      - [ORD-1749157242407-CC7F3879](order_id)
+      - order [ORD-1749157242407-CC7F3879](order_id) status
+      - track [ORD-1749157242407-CC7F3879](order_id)
+      - where is [ORD-1749157242407-CC7F3879](order_id)
+      - status of order [ORD-1749157242407-CC7F3879](order_id)
+      - [ORD-1749157242407-CC7F3879](order_id) tracking
+      - check [ORD-1749157242407-CC7F3879](order_id)
+      - find order [ORD-1749157242407-CC7F3879](order_id)
+      - locate [ORD-1749157242407-CC7F3879](order_id)
+      - order number [ORD-1749157242407-CC7F3879](order_id)
+      - my order [ORD-1749157242407-CC7F3879](order_id)
+      - please track [ORD-1749157242407-CC7F3879](order_id)
+      - I want to track [ORD-1749157242407-CC7F3879](order_id)
+      - help me find [ORD-1749157242407-CC7F3879](order_id)
+      - show me [ORD-1749157242407-CC7F3879](order_id)
+      - what's the status of [ORD-1749157242407-CC7F3879](order_id)
+      - [ORD-1749157242407-CC7F3879](order_id) order status
+      - track my order [ORD-1749157242407-CC7F3879](order_id)
+      - check my order [ORD-1749157242407-CC7F3879](order_id)
+      - order details for [ORD-1749157242407-CC7F3879](order_id)
+      - [ORD-1749157242407-CC7F3879](order_id) details
+      - order [ORD-1749157242407-CC7F3879](order_id) info
+      - track order id [ORD-1749157242407-CC7F3879](order_id)
+      - [ORD-1749157242407-CC7F3879](order_id) where is it
+      - status [ORD-1749157242407-CC7F3879](order_id)
+
+  - intent: ask_help
+    examples: |
+      - help me
+      - I need help
+      - can you help?
+      - assistance needed
+      - support
+      - customer service
+      - I have a question
+      - need support
+      - help please
+      - can you assist me?
+
+  - intent: ask_contact
+    examples: |
+      - how can I contact you?
+      - contact information
+      - phone number
+      - email address
+      - customer service number
+      - support contact
+      - how to reach you
+      - contact details
+      - get in touch
+      - speak to someone
+
+  - intent: product_inquiry
+    examples: |
+      - tell me about your products
+      - what do you sell?
+      - product information
+      - available products
+      - product catalog
+      - what's available?
+      - show me products
+      - product details
+      - merchandise
+      - items for sale
+
+  - intent: search_products
+    examples: |
+      - search for watch
+      - find watches
+      - show me watches
+      - look for shoes
+      - search shoes
+      - find laptops
+      - show headphones
+      - search for jacket
+      - look for dresses
+      - find smartwatch
+      - search phone
+      - show me bags
+      - look for sunglasses
+      - search for books
+      - find toys
+      - show cameras
+      - search for jeans
+      - look for shirts
+      - find earphones
+      - search for monitors
+      - show me wireless headphones
+      - find noise cancelling headphones
+      - search for running shoes
+      - look for leather bags
+      - find me a smartwatch
+      - show some headphones
+      - search for a jacket
+      - find me some dresses
+      - look for a phone
+      - show me some bags
+
+  - lookup: order_id
+    examples: |
+      - ORD-1749157242407-CC7F3879
+      - ORD-1234567890123-ABCD1234
+      - ORD-9876543210987-EFGH5678
