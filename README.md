@@ -1,4 +1,4 @@
-# VisualShop-AI – AI-Powered Visual E-Commerce Platform
+# VisualShop-AI: AI-Powered Visual E-Commerce Platform
 
 > ⚠️ **Disclaimer:** This codebase is a sanitized, anonymized version of a real-world freelance project executed as part of a university capstone initiative. All proprietary identifiers and client branding have been removed. The project is shared here strictly for demonstration of full-stack engineering, AI integration, and architectural design.
 
